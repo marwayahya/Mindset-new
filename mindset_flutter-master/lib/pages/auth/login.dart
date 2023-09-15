@@ -55,12 +55,12 @@ class _LoginPageState extends State<LoginPage> {
               TextField(
                 controller: _LoginMailCtrl,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
         
                 ),
                 decoration: InputDecoration (
                   hintText: "Email",
-                  hintStyle: TextStyle(color: Colors.grey.shade300)  ,
+                  hintStyle: TextStyle(color: const Color.fromARGB(255, 72, 71, 71))  ,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     borderSide: BorderSide(
@@ -69,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                     ),
                   filled: true,
-                  fillColor: AppColors.primaryColor.withOpacity(.8),
+                  fillColor: const Color.fromARGB(255, 234, 230, 224).withOpacity(.8),
                   prefixIcon: Icon(
                     Icons.mail, 
                     color:  Colors.white,)
@@ -81,12 +81,12 @@ class _LoginPageState extends State<LoginPage> {
                 controller: _PasswordCtrl,
                 obscureText: _isPasswordObscured,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.black,
         
                 ),
                 decoration: InputDecoration (
                   hintText: "Password",
-                  hintStyle: TextStyle(color: Colors.grey.shade300)  ,
+                  hintStyle: TextStyle(color: const Color.fromARGB(255, 85, 76, 76))  ,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     borderSide: BorderSide(
@@ -95,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                     )
                     ),
                   filled: true,
-                  fillColor: AppColors.primaryColor.withOpacity(.8),
+                  fillColor: Color.fromARGB(255, 244, 243, 241).withOpacity(.8),
                   prefixIcon: Icon(
                     Icons.lock, 
                     color:  Colors.white,
