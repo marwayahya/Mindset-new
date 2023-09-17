@@ -36,7 +36,7 @@ class _ArticlePreviewState extends State<ArticlePreview> {
     //actions: save,favorite,option ,report
     return Container(
       padding: EdgeInsets.all(12),
-      color: Colors.grey.shade900,
+      color: Color.fromARGB(255, 219, 213, 213),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

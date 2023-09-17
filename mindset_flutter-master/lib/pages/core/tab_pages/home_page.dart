@@ -45,7 +45,7 @@ ArticleServices _articleServices = ArticleServices();
                     separatorBuilder: (context, index) => SizedBox(
                       height: 10,
                     ),
-                    itemBuilder: (context,index) {
+                    itemBuilder: (context,index)  {
                       
                       Post post =Post(
                         title: snapshot.data!.docs[index]['title'], 
@@ -92,14 +92,21 @@ ArticleServices _articleServices = ArticleServices();
                           child: CircularProgressIndicator(
                             color: AppColors.primaryColor),
                         )
-                      ],);
+                      ],
+                      );
                   }
                   
+                  
                 }
+                
               ),
-           ]
+              
+          
+          ]
            ),
+           
         ),
         );
+  
   }
 }

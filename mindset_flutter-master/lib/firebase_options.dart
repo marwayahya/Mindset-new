@@ -17,24 +17,15 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      throw UnsupportedError(
-        'DefaultFirebaseOptions have not been configured for web - '
-        'you can reconfigure this by running the FlutterFire CLI again.',
-      );
+      return web;
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -52,11 +43,43 @@ class DefaultFirebaseOptions {
     }
   }
 
+  static const FirebaseOptions web = FirebaseOptions(
+    apiKey: 'AIzaSyC4X_gE9fejjdEU-1nlV8yFQAQt-hJWnNk',
+    appId: '1:1037733346379:web:ae3daf5e32a581fe10a1ce',
+    messagingSenderId: '1037733346379',
+    projectId: 'mindset-374be',
+    authDomain: 'mindset-374be.firebaseapp.com',
+    databaseURL: 'https://mindset-374be-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'mindset-374be.appspot.com',
+    measurementId: 'G-SM4JKMWKQ6',
+  );
+
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBuS3_pWf8kA9BS_lm6TIJkXa3o8_U9uwQ',
-    appId: '1:1064909359355:android:6d46d844a13e9fcca3c85e',
-    messagingSenderId: '1064909359355',
-    projectId: 'mindset-flutter-f5fa0',
-    storageBucket: 'mindset-flutter-f5fa0.appspot.com',
+    apiKey: 'AIzaSyCaerEspxZmwdyl14u7wa4SXbgSIpWjt3s',
+    appId: '1:1037733346379:android:f91ff2eeff41994910a1ce',
+    messagingSenderId: '1037733346379',
+    projectId: 'mindset-374be',
+    databaseURL: 'https://mindset-374be-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'mindset-374be.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyAW4Yq1wEG4bmDs3j9KrVGAXB9DQ4JEDGI',
+    appId: '1:1037733346379:ios:8f04409c21dd3a6c10a1ce',
+    messagingSenderId: '1037733346379',
+    projectId: 'mindset-374be',
+    databaseURL: 'https://mindset-374be-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'mindset-374be.appspot.com',
+    iosBundleId: 'com.example.mediumCloneFlutter',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyAW4Yq1wEG4bmDs3j9KrVGAXB9DQ4JEDGI',
+    appId: '1:1037733346379:ios:8f04409c21dd3a6c10a1ce',
+    messagingSenderId: '1037733346379',
+    projectId: 'mindset-374be',
+    databaseURL: 'https://mindset-374be-default-rtdb.europe-west1.firebasedatabase.app',
+    storageBucket: 'mindset-374be.appspot.com',
+    iosBundleId: 'com.example.mediumCloneFlutter',
   );
 }

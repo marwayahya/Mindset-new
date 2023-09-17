@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mindset_flutter/pages/core/article/newArticle.dart';
 import 'package:mindset_flutter/pages/core/tab_pages/home_page.dart';
 
 import '../../utils/app_colors.dart';
@@ -52,6 +53,19 @@ class _MainScreenState extends State<MainScreen> {
           Container(color: Colors.teal,),
         ],
       ),
+       floatingActionButton: FloatingActionButton(
+         onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            isScrollControlled: true, // Allow for full-screen modal
+            builder: (BuildContext context) {
+              return TextEditorScreen();
+            },
+          );
+        },
+    child: Icon(Icons.add),
+    backgroundColor: Colors.green, // You can use any icon you like
+  ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 22,
         backgroundColor: Colors.black,

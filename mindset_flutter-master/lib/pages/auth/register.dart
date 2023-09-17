@@ -1,10 +1,11 @@
 
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
-import '../../services/auth_services.dart';
+//import '../../services/auth_services.dart';
 import '../../utils/app_colors.dart';
 import '../../widgets/pass_match.dart';
 import '../core/main_screen.dart';
@@ -18,16 +19,45 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
-  AuthService _authService = AuthService();
-  final TextEditingController _fullNameCtrl = TextEditingController();
- final TextEditingController _LoginMailCtrl = TextEditingController();
- final TextEditingController _PasswordCtrl = TextEditingController();
- final TextEditingController _ConfirmPassCtrl = TextEditingController();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  TextEditingController _nameController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _confirmPasswordController = TextEditingController();
  bool _isPasswordObscured = true;
  bool _isConfirmPassObscured = true;
  bool _isPassMatch = false;
  bool _isPassVerifEmpty = false;
+void _register() async {
+  print('called');
+    
+      try {
+         String email = _emailController.text.trim();
+         
+         String password = _passwordController.text.trim();
+         print('$email');
+         print('$password');
+         UserCredential authResult = await _auth.createUserWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
+        
+        // Optionally, you can update the user's display name:
+        
 
+        Navigator.pushReplacement(
+                                        context,
+                                        CupertinoPageRoute(
+                                          builder: (context) => MainScreen()
+                                          ),
+                    );
+
+      } catch (e) {
+        print('Error during registration: $e');
+      
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +92,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 14),
               TextField(
-                controller: _fullNameCtrl,
+                controller: _nameController,
                 style: TextStyle(
                   color: Colors.white,
         
@@ -86,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               SizedBox(height: 14),
               TextField(
-                controller: _LoginMailCtrl,
+                controller: _emailController,
                 style: TextStyle(
                   color: Colors.white,
         
@@ -111,7 +141,7 @@ class _RegisterPageState extends State<RegisterPage> {
         
               SizedBox(height: 14,),
               TextField(
-                controller: _PasswordCtrl,
+                controller: _passwordController,
                 obscureText: _isPasswordObscured,
                 style: TextStyle(
                   color: Colors.white,
@@ -151,7 +181,7 @@ class _RegisterPageState extends State<RegisterPage> {
 
               SizedBox(height: 14,),
               TextField(
-                controller: _ConfirmPassCtrl,
+                controller: _confirmPasswordController,
                 obscureText: _isConfirmPassObscured,
                 style: TextStyle(
                   color: Colors.white,
@@ -189,7 +219,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     ), 
                 ),
                 onChanged: (val) {
-                   if (val.isEmpty && _ConfirmPassCtrl.text.isEmpty) {
+                   if (val.isEmpty && _confirmPasswordController.text.isEmpty) {
                     setState(() {
                       _isPassVerifEmpty = false;
                       
@@ -198,7 +228,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     } else {
                 setState(() {
                  _isPassVerifEmpty = true;
-                _PasswordCtrl.text == val 
+                _passwordController.text == val 
                 ? _isPassMatch = true 
                 : _isPassMatch = false;
                 });
@@ -243,28 +273,26 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                           ), 
                           onPressed: () async{
-                            if( _LoginMailCtrl.text.isEmpty || 
-                            _PasswordCtrl.text.isEmpty||
-                            _ConfirmPassCtrl.text.isEmpty||
-                            _fullNameCtrl.text.isEmpty||
-                            (_PasswordCtrl.text != _ConfirmPassCtrl.text)) {
+                            if( _emailController.text.isEmpty || 
+                            _passwordController.text.isEmpty||
+                            _confirmPasswordController.text.isEmpty||
+                            _nameController.text.isEmpty||
+                            (_passwordController.text != _confirmPasswordController.text)) {
                               print("email/pass can't be empty");
                             } else {
-                              dynamic cred = await _authService.registerUser(
-                                _LoginMailCtrl.text.trim(),
-                                _PasswordCtrl.text.trim(),
-                                _fullNameCtrl.text.trim());
-                             if(cred == null){
-                              print("email/pass invalid");
-                             }else{
-                               Navigator.pushReplacement(
-                                        context,
-                                        CupertinoPageRoute(
-                                          builder: (context) => MainScreen()
-                                          ),
-                    );
+                              print('something');
+                              _register();
+                    //          if(cred == null){
+                    //           print("email/pass invalid");
+                    //          }else{
+                    //            Navigator.pushReplacement(
+                    //                     context,
+                    //                     CupertinoPageRoute(
+                    //                       builder: (context) => MainScreen()
+                    //                       ),
+                    // );
 
-                             }
+                    //          }
                             }
                        
                           },
