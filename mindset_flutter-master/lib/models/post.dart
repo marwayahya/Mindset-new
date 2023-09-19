@@ -7,10 +7,10 @@ String postToJson(Post data) => json.encode(data.toJson());
 
 class Post {
     String title;
-    String desc;
+    
     String content;
     String? coverUrl;
-    String auther;
+    String author;
     String createdAt;
     String readTime;
     int? nbLikes;
@@ -21,10 +21,10 @@ class Post {
 
     Post({
         required this.title,
-        required this.desc,
+       
         required this.content,
         this.coverUrl,
-        required this.auther,
+        required this.author,
         required this.createdAt,
         required this.readTime,
         this.nbLikes,
@@ -36,10 +36,10 @@ class Post {
 
     factory Post.fromJson(Map<String, dynamic> json) => Post(
         title: json["title"],
-        desc: json["desc"],
+        
         content: json["content"],
         coverUrl: json["cover_url"] ?? "",
-        auther: json["auther"],
+        author: json["author"],
         createdAt: json["created_at"],
         readTime: json["read_time"],
         nbLikes: json["nb_likes"] ?? 0,
@@ -51,10 +51,10 @@ class Post {
 
     Map<String, dynamic> toJson() => {
         "title": title,
-        "desc": desc,
+        
         "content": content,
         "cover_url": coverUrl ?? "",
-        "auther": auther,
+        "author": author,
         "created_at": createdAt,
         "read_time": readTime,
         "nb_likes": nbLikes ?? 0,

@@ -1,7 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mindset_flutter/pages/core/article/newArticle.dart';
+import 'package:mindset_flutter/pages/core/profile_page.dart';
 import 'package:mindset_flutter/pages/core/tab_pages/home_page.dart';
+import 'package:mindset_flutter/pages/core/write_article.dart';
 
 import '../../utils/app_colors.dart';
 
@@ -59,7 +63,7 @@ class _MainScreenState extends State<MainScreen> {
             context: context,
             isScrollControlled: true, // Allow for full-screen modal
             builder: (BuildContext context) {
-              return TextEditorScreen();
+              return WriteArticle();
             },
           );
         },
@@ -68,15 +72,18 @@ class _MainScreenState extends State<MainScreen> {
   ),
       bottomNavigationBar: BottomNavigationBar(
         elevation: 22,
-        backgroundColor: Colors.black,
-        selectedItemColor: AppColors.primaryColor,
-        unselectedItemColor: Colors.white30,
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Color.fromARGB(77, 48, 47, 47),
         onTap: navigationTapped,
         currentIndex: _page,
         //type: BottomNavigationBarType.shifting,
+        // ignore: prefer_const_literals_to_create_immutables
         items: [
+         // ignore: prefer_const_constructors
          BottomNavigationBarItem(
-          icon: Icon(CupertinoIcons.home,),
+          // ignore: prefer_const_constructors
+          icon: Icon(CupertinoIcons.home,fill: 1,),
           label: 'Home',
          ),
          BottomNavigationBarItem(
@@ -86,6 +93,19 @@ class _MainScreenState extends State<MainScreen> {
          BottomNavigationBarItem(
           icon: Icon(CupertinoIcons.book,),
           label: 'Favorites',
+         ),
+         BottomNavigationBarItem(
+           icon: GestureDetector(
+    onTap: () {
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) =>ProfilePage()),
+      );
+    },
+    child: Icon(CupertinoIcons.person),
+  ),
+  label: 'Profile',
          ),
          
         ],

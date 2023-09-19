@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mindset_flutter/services/auth_services.dart';
@@ -38,13 +40,13 @@ class _LoginPageState extends State<LoginPage> {
                   Image.asset(
                     "assets/logo/logo.png",
                     height: 40,
-                    color: Colors.white, 
+                    color: Colors.black, 
                     ),
                     SizedBox(width: 4),
                   Text(
                     'Mindset'.toUpperCase(),
                      style: TextStyle(
-                       color: Colors.white,
+                       color: Colors.black,
                        fontWeight: FontWeight.bold,
                        fontSize: 20,
                       ),
@@ -69,10 +71,10 @@ class _LoginPageState extends State<LoginPage> {
                     )
                     ),
                   filled: true,
-                  fillColor: const Color.fromARGB(255, 234, 230, 224).withOpacity(.8),
+                  fillColor: Color.fromARGB(255, 255, 255, 255).withOpacity(.8),
                   prefixIcon: Icon(
                     Icons.mail, 
-                    color:  Colors.white,)
+                    color:  Color.fromARGB(255, 95, 94, 94),)
                 ),
               ),
         
@@ -95,10 +97,10 @@ class _LoginPageState extends State<LoginPage> {
                     )
                     ),
                   filled: true,
-                  fillColor: Color.fromARGB(255, 244, 243, 241).withOpacity(.8),
+                  fillColor: Color.fromARGB(255, 255, 255, 255).withOpacity(.8),
                   prefixIcon: Icon(
                     Icons.lock, 
-                    color:  Colors.white,
+                    color:  Color.fromARGB(255, 95, 94, 94),
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {

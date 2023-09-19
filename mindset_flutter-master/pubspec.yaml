@@ -39,6 +39,8 @@ dependencies:
   firebase_core: ^2.15.0
   cloud_firestore: 
   flutter_quill: 
+  image_picker:
+  intl:
 
 
 dev_dependencies:

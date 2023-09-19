@@ -53,7 +53,7 @@ class _ArticleDetailsState extends State<ArticleDetails> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       FutureBuilder<DocumentSnapshot>(
-                        future: _authService.getUserByUID(widget.article.auther),
+                        future: _authService.getUserByUID(widget.article.author),
                         builder: (context, snapshot) {
                           if(snapshot.hasData) {
                              Map<String, dynamic> autherDetails = 

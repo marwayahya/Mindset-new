@@ -1,8 +1,10 @@
 
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:mindset_flutter/widgets/imagePickerThumbnail.dart';
 
 
 //import '../../services/auth_services.dart';
@@ -36,15 +38,22 @@ void _register() async {
          String email = _emailController.text.trim();
          
          String password = _passwordController.text.trim();
+         String name = _nameController.text.trim(); // Name input
          print('$email');
          print('$password');
          UserCredential authResult = await _auth.createUserWithEmailAndPassword(
           email: email,
           password: password,
         );
+            await FirebaseFirestore.instance.collection('users').doc(authResult.user!.uid).set({
+      'name': name,
+      
+      
+      
+    });
         
         // Optionally, you can update the user's display name:
-        
+        await authResult.user!.updateDisplayName( name);
 
         Navigator.pushReplacement(
                                         context,
@@ -58,6 +67,7 @@ void _register() async {
       
     }
   }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,12 +104,12 @@ void _register() async {
               TextField(
                 controller: _nameController,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 95, 94, 94),
         
                 ),
                 decoration: InputDecoration (
-                  hintText: "Marwa Yahya",
-                  hintStyle: TextStyle(color: Colors.grey.shade300)  ,
+                  hintText: "Full name",
+                  hintStyle: TextStyle(color: const Color.fromARGB(255, 140, 138, 138))  ,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     borderSide: BorderSide(
@@ -108,22 +118,22 @@ void _register() async {
                     )
                     ),
                   filled: true,
-                  fillColor: AppColors.primaryColor.withOpacity(.8),
+                  
                   prefixIcon: Icon(
                     Icons.person, 
-                    color:  Colors.white,)
+                    color:  Color.fromARGB(255, 95, 94, 94),)
                 ),
               ),
               SizedBox(height: 14),
               TextField(
                 controller: _emailController,
                 style: TextStyle(
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 95, 94, 94),
         
                 ),
                 decoration: InputDecoration (
                   hintText: "Email",
-                  hintStyle: TextStyle(color: Colors.grey.shade300)  ,
+                  hintStyle: TextStyle(color: const Color.fromARGB(255, 140, 138, 138))  ,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     borderSide: BorderSide(
@@ -132,10 +142,10 @@ void _register() async {
                     )
                     ),
                   filled: true,
-                  fillColor: AppColors.primaryColor.withOpacity(.8),
+                  
                   prefixIcon: Icon(
                     Icons.mail, 
-                    color:  Colors.white,)
+                    color:  Color.fromARGB(255, 95, 94, 94),)
                 ),
               ),
         
@@ -149,7 +159,7 @@ void _register() async {
                 ),
                 decoration: InputDecoration (
                   hintText: "Password",
-                  hintStyle: TextStyle(color: Colors.grey.shade300)  ,
+                  hintStyle: TextStyle(color: const Color.fromARGB(255, 140, 138, 138))  ,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     borderSide: BorderSide(
@@ -158,10 +168,10 @@ void _register() async {
                     )
                     ),
                   filled: true,
-                  fillColor: AppColors.primaryColor.withOpacity(.8),
+                  
                   prefixIcon: Icon(
                     Icons.lock, 
-                    color:  Colors.white,
+                    color:  Color.fromARGB(255, 95, 94, 94),
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -173,7 +183,7 @@ void _register() async {
                       _isPasswordObscured ?
                       Icons.visibility : 
                       Icons.visibility_off, 
-                    color:  Colors.white,
+                    color:  Color.fromARGB(255, 95, 94, 94),
                     ),
                     ), 
                 ),
@@ -189,7 +199,7 @@ void _register() async {
                 ),
                 decoration: InputDecoration (
                   hintText: "Confirm password",
-                  hintStyle: TextStyle(color: Colors.grey.shade300)  ,
+                  hintStyle: TextStyle(color: const Color.fromARGB(255, 140, 138, 138))  ,
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                     borderSide: BorderSide(
@@ -198,10 +208,10 @@ void _register() async {
                     )
                     ),
                   filled: true,
-                  fillColor: AppColors.primaryColor.withOpacity(.8),
+                  
                   prefixIcon: Icon(
                     Icons.lock, 
-                    color:  Colors.white,
+                    color:  Color.fromARGB(255, 95, 94, 94),
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -213,7 +223,7 @@ void _register() async {
                       _isConfirmPassObscured ?
                       Icons.visibility : 
                       Icons.visibility_off, 
-                      color:  Colors.white,
+                      color:  Color.fromARGB(255, 95, 94, 94),
                     ),
                     
                     ), 
@@ -237,7 +247,7 @@ void _register() async {
                   
                 }
               ),
-        
+        ImagePickerThumbnail(),
               SizedBox(height: 8,),
               Visibility(
                 visible: _isPassVerifEmpty,

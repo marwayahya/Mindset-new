@@ -14,9 +14,9 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: AppColors.primaryColor,
+        backgroundColor: Colors.white,
         elevation: 6,
         leading: IconButton(
           onPressed: () {
@@ -56,19 +56,25 @@ class _ProfilePageState extends State<ProfilePage> {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: 30,),
-                Row(
+                const SizedBox(height: 30,),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     CircleAvatar(
                       radius: 50,
                       backgroundColor: AppColors.primaryColor,
+                      child:Text('M',
+                       style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         color: Colors.white,
+                         fontSize: 50,
+                        ),)
                     ),
                   
                   ],
                 ),
-                SizedBox(height: 14,),
-                Row(
+                const SizedBox(height: 14,),
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Icon(CupertinoIcons.person, 
@@ -78,7 +84,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       'Marwa Yahya',
                        style: TextStyle(
                          fontWeight: FontWeight.bold,
-                         color: Colors.white,
+                         color: Colors.black,
                          fontSize: 18,
                         ),
                     )
@@ -93,10 +99,10 @@ class _ProfilePageState extends State<ProfilePage> {
                     ),
                     SizedBox(width: 4,),
                     Text(
-                      'MarwaYahya@gmail.com',
+                      'marwa@gmail.com',
                        style: TextStyle(
                          fontWeight: FontWeight.normal,
-                         color: Colors.white,
+                         color: Colors.black,
                          fontSize: 14,
                         ),
                     ),
@@ -111,7 +117,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       'Marwa1410',
                        style: TextStyle(
                          fontWeight: FontWeight.bold,
-                         color: Colors.white,
+                         color: Colors.black,
                          fontSize: 14,
                         ),
                     ),

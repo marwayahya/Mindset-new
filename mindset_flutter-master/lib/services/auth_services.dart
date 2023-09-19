@@ -64,6 +64,7 @@ class AuthService {
     }
     
     Future<DocumentSnapshot>getUserByUID(String userID) async {
+      print('userID$userID');
       return await _firebaseFirestore.collection("users").doc(userID).get();
     }
   }

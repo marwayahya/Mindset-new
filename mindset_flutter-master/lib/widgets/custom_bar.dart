@@ -19,24 +19,11 @@ class _CustomBarState extends State<CustomBar> {
       padding: const EdgeInsets.all(12),
       child:Row(
         children: [
-          InkResponse(
-            onTap: () {
-              Navigator.push(
-                context, CupertinoPageRoute(
-                  builder: ((context) => ProfilePage()
-                  ),
-                  ),
-                  );
-            },
-            child: CircleAvatar(
-              backgroundColor: AppColors.primaryColor.withOpacity(.8),
-              radius: 18,
-            ),
-          ),
+
 
           SizedBox(width: 8,),
            Text('Home', style: TextStyle(
-            color: Colors.white, 
+            color: Colors.black, 
             fontSize:  30, 
             fontWeight: FontWeight.bold
             ),
