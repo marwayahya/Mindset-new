@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:mindset_flutter/pages/core/article/newArticle.dart';
 import 'package:mindset_flutter/pages/core/profile_page.dart';
+import 'package:mindset_flutter/pages/core/tab_pages/explore_page.dart';
 import 'package:mindset_flutter/pages/core/tab_pages/home_page.dart';
 import 'package:mindset_flutter/pages/core/write_article.dart';
 
@@ -52,7 +53,7 @@ class _MainScreenState extends State<MainScreen> {
         onPageChanged: onPageChaged,
         children: [
           HomePage(),
-          Container(color: Colors.orange,),
+          ExplorePage(),
           Container(color: Colors.purple,),
           Container(color: Colors.teal,),
         ],
@@ -80,7 +81,7 @@ class _MainScreenState extends State<MainScreen> {
         //type: BottomNavigationBarType.shifting,
         // ignore: prefer_const_literals_to_create_immutables
         items: [
-         // ignore: prefer_const_constructors
+         // ignore: prefer_const_constructors, duplicate_ignore
          BottomNavigationBarItem(
           // ignore: prefer_const_constructors
           icon: Icon(CupertinoIcons.home,fill: 1,),

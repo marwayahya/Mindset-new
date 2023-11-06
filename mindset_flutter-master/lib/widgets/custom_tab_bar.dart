@@ -14,9 +14,7 @@ class CustomTabBar extends StatefulWidget {
 
 class _CustomTabBarState extends State<CustomTabBar> {
   List<String>tabTitles = [
-    "Add",
-    "For you",
-    "Following",
+
     "Blochchain",
     "Data Sciences",
     "Machine Learning",
@@ -48,13 +46,13 @@ class _CustomTabBarState extends State<CustomTabBar> {
 
   Widget _buildTabChip(String title) {
     return Container(
-      decoration: BoxDecoration(color: AppColors.primaryColor.withOpacity(.8),
+      decoration: BoxDecoration(color: Color.fromARGB(255, 230, 233, 230).withOpacity(.8),
       borderRadius: BorderRadius.all(Radius.circular(100))
       ),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Center(
         child: Text(title,
-        style: TextStyle(color: Colors.white,
+        style: TextStyle(color: Color.fromARGB(255, 80, 80, 80),
         fontSize: 20),),
       ),
     );

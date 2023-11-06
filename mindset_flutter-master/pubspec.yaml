@@ -41,6 +41,7 @@ dependencies:
   flutter_quill: 
   image_picker:
   intl:
+  firebase_storage: ^11.4.1
 
 
 dev_dependencies:

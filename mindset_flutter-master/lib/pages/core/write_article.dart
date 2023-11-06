@@ -1,11 +1,19 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_quill/flutter_quill.dart' hide Text;
+import 'package:image_picker/image_picker.dart';
 import 'package:mindset_flutter/models/post.dart';
 import 'package:mindset_flutter/services/articles_services.dart';
 import 'package:mindset_flutter/utils/date_helper.dart';
+import 'package:mindset_flutter/widgets/imagePickerThumbnail.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../utils/app_colors.dart';
 
@@ -24,6 +32,35 @@ class _WriteArticleState extends State<WriteArticle> {
   TextEditingController _content = TextEditingController();
   TextEditingController _desc = TextEditingController();
   QuillController _controller = QuillController.basic();
+    File? _image;
+  String? _imageUrl;
+  Future<void> _uploadImageToFirebase() async {
+    final Reference storageReference =
+        FirebaseStorage.instance.ref().child('images/${DateTime.now()}.jpg');
+    final UploadTask uploadTask = storageReference.putFile(_image!);
+
+    try {
+      final TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() => null);
+      final String downloadURL = await taskSnapshot.ref.getDownloadURL();
+      setState(() {
+        _imageUrl = downloadURL;
+      });
+    } catch (e) {
+      print("Error uploading image: $e");
+    }
+  }
+    // Function to pick an image from the device gallery
+  Future<void> _pickImage() async {
+    final pickedImage = await ImagePicker().pickImage(source: ImageSource.gallery);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+
+      // Upload the picked image to Firebase Storage
+      _uploadImageToFirebase();
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -77,7 +114,7 @@ class _WriteArticleState extends State<WriteArticle> {
                   style:  TextStyle(
                     color: Colors.grey,
                   ),
-                  maxLines: 2,
+                  maxLines: 1,
                   decoration: const InputDecoration (
                     hintText: "Read Time",
                     hintStyle: TextStyle(color: Colors.grey)  ,
@@ -126,15 +163,18 @@ class _WriteArticleState extends State<WriteArticle> {
                           color:  Colors.grey,)
                       ),
                     ),
-                    QuillToolbar.basic(controller: _controller),
+                    
 
                   ],
                 ),
+                ImagePickerThumbnail(),
 
                 SizedBox(height:22,),
               Row(
                 children: [
+                  
                   Expanded(
+                    
                     child: CupertinoButton(
                       color: AppColors.primaryColor.withOpacity(.8),
                       child: Text(
@@ -159,7 +199,9 @@ class _WriteArticleState extends State<WriteArticle> {
                        
                           },
                           ),
+                          
                   ),
+                  
                 ],
               ),
           ],

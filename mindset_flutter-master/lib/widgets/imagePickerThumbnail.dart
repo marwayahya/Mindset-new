@@ -34,7 +34,7 @@ class _ImagePickerThumbnailState extends State<ImagePickerThumbnail> {
           ),
         ElevatedButton(
           onPressed: _pickImage,
-          child: Text("Profile picture"),
+          child: Text("Choose Image"),
           style: ElevatedButton.styleFrom(
     backgroundColor: AppColors.primaryColor.withOpacity(.8),  // Background color
   ),

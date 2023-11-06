@@ -33,7 +33,7 @@ ArticleServices _articleServices = ArticleServices();
              initialIndex: 1,
              child: Column(
               children: [
-                CustomBar(),
+                CustomBar( text: 'Home',),
                 SizedBox(height: 4,),
                               TabBar(
                                 indicator: BoxDecoration(
